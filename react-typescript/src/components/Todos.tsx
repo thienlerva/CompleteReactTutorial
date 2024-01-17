@@ -1,4 +1,4 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import Todo from "../models/todo";
 import TodoItem from "./TodoItem";
 
@@ -7,19 +7,21 @@ interface TodosPros {
   todos: Todo[];
 }
 
-const Todos: React.FC<TodosPros> = ({ todos, onRemoveTodo }) => {
-  return (
-    <ul>
-      {todos.map((item) => (
-        <TodoItem
-          key={item.id}
-          id={item.id}
-          text={item.text}
-          onRemoveTodo={onRemoveTodo}
-        />
-      ))}
-    </ul>
-  );
-};
+const Todos = forwardRef<HTMLDivElement, TodosPros>(
+  ({ todos, onRemoveTodo }, ref) => {
+    return (
+      <ul>
+        {todos.map((item) => (
+          <TodoItem
+            key={item.id}
+            id={item.id}
+            text={item.text}
+            onRemoveTodo={onRemoveTodo}
+          />
+        ))}
+      </ul>
+    );
+  }
+);
 
 export default Todos;
