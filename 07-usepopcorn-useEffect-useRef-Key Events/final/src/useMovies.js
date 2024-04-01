@@ -11,7 +11,7 @@ export function useMovies(query) {
     function () {
       // callback?.();
 
-      const controller = new AbortController();
+      const controller = new AbortController(); // used to wait till in last keystrokes to send API requests
 
       async function fetchMovies() {
         try {
